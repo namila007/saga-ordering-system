@@ -1,0 +1,48 @@
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>me.namila.food_ordering</groupId>
+        <artifactId>order-service</artifactId>
+        <version>${order-service.version}</version>
+    </parent>
+
+    <artifactId>order-container</artifactId>
+    <packaging>jar</packaging>
+
+    <name>order-container</name>
+
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>me.namila.food_ordering</groupId>
+            <artifactId>order-application</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>me.namila.food_ordering</groupId>
+            <artifactId>order-domain-application-service</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>me.namila.food_ordering</groupId>
+            <artifactId>order-messaging</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>me.namila.food_ordering</groupId>
+            <artifactId>order-dataaccess</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>me.namila.food_ordering</groupId>
+            <artifactId>order-dataaccess</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+</project>

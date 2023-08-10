@@ -1,0 +1,80 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>me.namila.food_ordering</groupId>
+        <artifactId>food-ordering-system</artifactId>
+        <version>${revision}</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <artifactId>order-service</artifactId>
+    <version>${order-service.version}</version>
+    <packaging>pom</packaging>
+
+    <name>order-service</name>
+
+    <modules>
+        <module>order-domain</module>
+        <module>order-application</module>
+        <module>order-messaging</module>
+        <module>order-dataaccess</module>
+        <module>order-container</module>
+    </modules>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <!--   Start order service dependency versions-->
+        <order-container.version>1.0.0-dev-SNAPSHOT</order-container.version>
+        <!--        start order domain-->
+        <order-domain.version>1.0.0-dev-SNAPSHOT</order-domain.version>
+        <order-domain-application-service.version>1.0.0-dev-SNAPSHOT</order-domain-application-service.version>
+        <order-domain-core.version>1.0.0-dev-SNAPSHOT</order-domain-core.version>
+        <!--        end order domain-->
+        <order-messaging.version>1.0.0-dev-SNAPSHOT</order-messaging.version>
+        <order-application.version>1.0.0-dev-SNAPSHOT</order-application.version>
+        <order-dataaccess.version>1.0.0-dev-SNAPSHOT</order-dataaccess.version>
+        <!--   End  order service dependency versions-->
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>me.namila.food_ordering</groupId>
+                <artifactId>order-domain</artifactId>
+                <version>${order-domain.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>me.namila.food_ordering</groupId>
+                <artifactId>order-domain-core</artifactId>
+                <version>${order-domain-core.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>me.namila.food_ordering</groupId>
+                <artifactId>order-domain-application-service</artifactId>
+                <version>${order-domain-application-service.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>me.namila.food_ordering</groupId>
+                <artifactId>order-messaging</artifactId>
+                <version>${order-messaging.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>me.namila.food_ordering</groupId>
+                <artifactId>order-dataaccess</artifactId>
+                <version>${order-dataaccess.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>me.namila.food_ordering</groupId>
+                <artifactId>order-application</artifactId>
+                <version>${order-application.version}</version>
+            </dependency>
+
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+
+    </dependencies>
+</project>
