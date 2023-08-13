@@ -4,9 +4,9 @@
     <option name="selectedGlobalProfile">
       <Settings>
         <option name="formatter" value="ECLIPSE" />
-        <option name="id" value="1653757706293" />
+        <option name="id" value="1644349596148" />
         <option name="name" value="new" />
-        <option name="pathToConfigFileJava" value="$PROJECT_DIR$/../../springboot/user-service/eclipse-java-google-style.xml" />
+        <option name="pathToConfigFileJava" value="$PROJECT_DIR$/../user-service/userservice/eclipse-java-google-style.xml" />
         <option name="selectedJavaProfile" value="GoogleStyle" />
       </Settings>
     </option>
