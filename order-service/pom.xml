@@ -1,4 +1,4 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
@@ -35,6 +35,8 @@
         <order-messaging.version>1.0.0-dev-SNAPSHOT</order-messaging.version>
         <order-application.version>1.0.0-dev-SNAPSHOT</order-application.version>
         <order-dataaccess.version>1.0.0-dev-SNAPSHOT</order-dataaccess.version>
+        <!--        commons-->
+        <order-commons-domain.version>1.0.0-dev-SNAPSHOT</order-commons-domain.version>
         <!--   End  order service dependency versions-->
     </properties>
 
@@ -72,14 +74,20 @@
             </dependency>
             <dependency>
                 <groupId>me.namila.food_ordering</groupId>
-                <artifactId>commons</artifactId>
-                <version>${ordering-commons.version}</version>
+                <artifactId>commons-domain</artifactId>
+                <version>${order-commons-domain.version}</version>
             </dependency>
-
         </dependencies>
     </dependencyManagement>
 
     <dependencies>
-
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-logging</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
     </dependencies>
 </project>

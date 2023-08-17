@@ -24,5 +24,9 @@
             <artifactId>junit-jupiter</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>me.namila.food_ordering</groupId>
+            <artifactId>commons-domain</artifactId>
+        </dependency>
     </dependencies>
 </project>
