@@ -1,15 +1,13 @@
-package me.namila.food_ordering.domain.application.ports.input.service;
+package me.namila.food_ordering.domain.application.service;
 
 import java.util.Optional;
 import java.util.UUID;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import lombok.extern.slf4j.Slf4j;
 import me.namila.food_ordering.domain.application.dto.create.CreateOrderCommand;
-import me.namila.food_ordering.domain.application.dto.create.CreateOrderResponse;
 import me.namila.food_ordering.domain.application.mapper.OrderDataMapper;
 import me.namila.food_ordering.domain.application.ports.output.repository.CustomerRepository;
 import me.namila.food_ordering.domain.application.ports.output.repository.OrderRepository;
@@ -21,10 +19,12 @@ import me.namila.food_ordering.domain.core.event.OrderCreatedEvent;
 import me.namila.food_ordering.domain.core.exception.OrderDomainException;
 import me.namila.food_ordering.domain.core.service.OrderDomainService;
 
+/**
+ * The type Order create helper.
+ */
 @Slf4j
 @Component
-public class OrderCreateCommandHandler {
-
+public class OrderCreateHelper {
   private final OrderDomainService orderDomainService;
   private final OrderRepository orderRepository;
   private final CustomerRepository customerRepository;
@@ -32,10 +32,18 @@ public class OrderCreateCommandHandler {
 
   private final OrderDataMapper orderDataMapper;
 
-  @Autowired
-  public OrderCreateCommandHandler(OrderDomainService orderDomainService,
-      OrderRepository orderRepository, CustomerRepository customerRepository,
-      RestaurantRepository restaurantRepository, OrderDataMapper orderDataMapper) {
+  /**
+   * Instantiates a new Order create helper.
+   *
+   * @param orderDomainService the order domain service
+   * @param orderRepository the order repository
+   * @param customerRepository the customer repository
+   * @param restaurantRepository the restaurant repository
+   * @param orderDataMapper the order data mapper
+   */
+  public OrderCreateHelper(OrderDomainService orderDomainService, OrderRepository orderRepository,
+      CustomerRepository customerRepository, RestaurantRepository restaurantRepository,
+      OrderDataMapper orderDataMapper) {
     this.orderDomainService = orderDomainService;
     this.orderRepository = orderRepository;
     this.customerRepository = customerRepository;
@@ -43,15 +51,21 @@ public class OrderCreateCommandHandler {
     this.orderDataMapper = orderDataMapper;
   }
 
+  /**
+   * Persist order order.
+   *
+   * @param createOrderCommand the create order command
+   * @return the order
+   */
   @Transactional
-  public CreateOrderResponse createOrder(CreateOrderCommand createOrderCommand) {
+  public OrderCreatedEvent persistOrder(CreateOrderCommand createOrderCommand) {
     checkCustomer(createOrderCommand.getCustomerId());
     Restaurant restaurant = retrieveRestaurant(createOrderCommand);
     Order order = orderDataMapper.createOrderCommandToOrder(createOrderCommand);
     OrderCreatedEvent validatedOrder =
         orderDomainService.validateAndInitiateOrder(order, restaurant);
-    Order orderResult = saveOrder(order);
-    return orderDataMapper.orderToCreateOrderResponse(orderResult);
+    saveOrder(order);
+    return validatedOrder;
   }
 
 
