@@ -1,4 +1,4 @@
-package me.namila.food_ordering.domain.application.ports.input.service;
+package me.namila.food_ordering.domain.application.service;
 
 import jakarta.validation.Valid;
 import me.namila.food_ordering.domain.application.dto.create.CreateOrderCommand;
