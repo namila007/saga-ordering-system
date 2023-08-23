@@ -22,10 +22,6 @@
             <groupId>me.namila.food_ordering</groupId>
             <artifactId>order-domain-application-service</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter</artifactId>
-            <scope>test</scope>
-        </dependency>
+
     </dependencies>
 </project>

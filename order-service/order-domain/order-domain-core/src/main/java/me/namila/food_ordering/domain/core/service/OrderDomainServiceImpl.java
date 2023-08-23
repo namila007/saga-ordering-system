@@ -12,9 +12,12 @@ import me.namila.food_ordering.domain.core.event.OrderCreatedEvent;
 import me.namila.food_ordering.domain.core.event.OrderPaidEvent;
 import me.namila.food_ordering.domain.core.exception.OrderDomainException;
 
+/**
+ * The type Order domain service.
+ */
 @Slf4j
 public class OrderDomainServiceImpl implements OrderDomainService {
-  private static String TIME_ZONE = "IST";
+  private static final String TIME_ZONE = "UTC";
 
   @Override
   public OrderCreatedEvent validateAndInitiateOrder(Order order, Restaurant restaurant) {

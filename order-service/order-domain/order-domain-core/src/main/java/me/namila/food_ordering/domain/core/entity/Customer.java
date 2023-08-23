@@ -15,4 +15,9 @@ public class Customer extends AggregateRoot<CustomerId> {
   public Customer(CustomerId customerId) {
     super.setId(customerId);
   }
+
+  /**
+   * Instantiates a new Customer.
+   */
+  public Customer() {}
 }
