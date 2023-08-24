@@ -18,6 +18,7 @@
     <url>https://namila.me</url>
     <modules>
         <module>commons</module>
+        <module>infrastructure</module>
     </modules>
 
 
