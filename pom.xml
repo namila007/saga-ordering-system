@@ -18,7 +18,6 @@
     <url>https://namila.me</url>
 
 
-
     <properties>
         <revision>1.0.0-dev-SNAPSHOT</revision>
 
@@ -34,6 +33,8 @@
         <!--order service-->
         <order-service.version>1.0.0-dev-SNAPSHOT</order-service.version>
         <ordering-commons.version>1.0.0-dev-SNAPSHOT</ordering-commons.version>
+        <!-- infrastructure-->
+        <infrastructure.version>1.0.0-dev-SNAPSHOT</infrastructure.version>
     </properties>
 
     <dependencyManagement>
