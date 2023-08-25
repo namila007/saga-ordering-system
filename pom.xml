@@ -16,10 +16,7 @@
 
     <name>food-ordering-system</name>
     <url>https://namila.me</url>
-    <modules>
-        <module>commons</module>
-        <module>infrastructure</module>
-    </modules>
+
 
 
     <properties>
@@ -65,6 +62,12 @@
             </modules>
         </profile>
         <profile>
+            <id>infrastructure</id>
+            <modules>
+                <module>infrastructure</module>
+            </modules>
+        </profile>
+        <profile>
             <id>commons-libs</id>
             <modules>
                 <module>commons</module>
@@ -78,6 +81,7 @@
             <modules>
                 <module>order-service</module>
                 <module>commons</module>
+                <module>infrastructure</module>
             </modules>
         </profile>
     </profiles>
