@@ -85,6 +85,16 @@
                 <version>${kafka.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
+                <exclusions>
+                    <exclusion>
+                        <groupId>me.namila.food_ordering</groupId>
+                        <artifactId>order-domain-core</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>me.namila.food_ordering</groupId>
+                        <artifactId>commons-domain</artifactId>
+                    </exclusion>
+                </exclusions>
             </dependency>
         </dependencies>
     </dependencyManagement>

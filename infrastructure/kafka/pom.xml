@@ -10,7 +10,7 @@
     </parent>
 
     <artifactId>kafka</artifactId>
-    <version>${kafka.version}</version>
+    <version>${kafka-module.version}</version>
 
     <packaging>pom</packaging>
     <modules>
@@ -22,7 +22,7 @@
 
     <properties>
         <!--        kafka modules-->
-        <kafka.version>1.0.0-dev-SNAPSHOT</kafka.version>
+        <kafka-module.version>1.0.0-dev-SNAPSHOT</kafka-module.version>
         <kafka-config-data.version>1.0.0-dev-SNAPSHOT</kafka-config-data.version>
         <kafka-consumer.version>1.0.0-dev-SNAPSHOT</kafka-consumer.version>
         <kafka-producer.version>1.0.0-dev-SNAPSHOT</kafka-producer.version>
@@ -30,6 +30,8 @@
 
         <kafka-avro-serializer.version>7.5.0</kafka-avro-serializer.version>
         <avro.version>1.11.2</avro.version>
+        <order-domain-core.version>1.0.0-dev-SNAPSHOT</order-domain-core.version>
+        <commons-domain.version>1.0.0-dev-SNAPSHOT</commons-domain.version>
     </properties>
 
     <repositories>
@@ -64,8 +66,14 @@
             </dependency>
             <!--            end bom-->
             <dependency>
-                <groupId>org.springframework.kafka</groupId>
-                <artifactId>spring-kafka</artifactId>
+                <groupId>me.namila.food_ordering</groupId>
+                <artifactId>order-domain-core</artifactId>
+                <version>${order-domain-core.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>me.namila.food_ordering</groupId>
+                <artifactId>commons-domain</artifactId>
+                <version>${commons-domain.version}</version>
             </dependency>
             <dependency>
                 <groupId>io.confluent</groupId>
@@ -97,5 +105,28 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+
+    <dependencies>
+        <dependency>
+            <groupId>io.confluent</groupId>
+            <artifactId>kafka-avro-serializer</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.avro</groupId>
+                    <artifactId>avro-maven-plugin</artifactId>
+                    <version>${avro.version}</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
 
 </project>

@@ -6,7 +6,7 @@
     <parent>
         <groupId>me.namila.food_ordering</groupId>
         <artifactId>kafka</artifactId>
-        <version>${kafka.version}</version>
+        <version>${kafka-module.version}</version>
     </parent>
 
     <artifactId>kafka-model</artifactId>
@@ -17,5 +17,33 @@
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+
+
+
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.avro</groupId>
+                <artifactId>avro-maven-plugin</artifactId>
+                <configuration>
+                    <stringType>String</stringType>
+                    <enableDecimalLogicalType>true</enableDecimalLogicalType>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>schema</goal>
+                        </goals>
+                        <configuration>
+                            <sourceDirectory>src/main/resources/avro</sourceDirectory>
+                            <outputDirectory>src/main/java</outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>

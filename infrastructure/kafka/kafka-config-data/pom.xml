@@ -6,7 +6,7 @@
     <parent>
         <groupId>me.namila.food_ordering</groupId>
         <artifactId>kafka</artifactId>
-        <version>${kafka.version}</version>
+        <version>${kafka-module.version}</version>
     </parent>
 
     <artifactId>kafka-config-data</artifactId>
