@@ -5,28 +5,25 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>me.namila.food_ordering</groupId>
-        <artifactId>kafka</artifactId>
-        <version>${kafka-module.version}</version>
+        <artifactId>commons</artifactId>
+        <version>${ordering-commons.version}</version>
     </parent>
 
-    <artifactId>kafka-consumer</artifactId>
-    <version>${kafka-consumer.version}</version>
-
-    <properties>
-    </properties>
+    <artifactId>commons-application</artifactId>
+    <version>${common-application.version}</version>
 
     <dependencies>
         <dependency>
-            <groupId>org.springframework.kafka</groupId>
-            <artifactId>spring-kafka</artifactId>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.apache.avro</groupId>
-            <artifactId>avro</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
         <dependency>
-            <groupId>me.namila.food_ordering</groupId>
-            <artifactId>kafka-config-data</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
         </dependency>
     </dependencies>
 

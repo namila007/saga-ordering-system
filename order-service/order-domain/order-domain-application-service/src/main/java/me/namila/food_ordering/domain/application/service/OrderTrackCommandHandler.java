@@ -8,10 +8,10 @@ import org.springframework.transaction.annotation.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import me.namila.food_ordering.domain.application.dto.track.TrackOrderQuery;
 import me.namila.food_ordering.domain.application.dto.track.TrackOrderResponse;
+import me.namila.food_ordering.domain.application.exception.OrderNotFoundException;
 import me.namila.food_ordering.domain.application.mapper.OrderDataMapper;
 import me.namila.food_ordering.domain.application.ports.output.repository.OrderRepository;
 import me.namila.food_ordering.domain.core.entity.Order;
-import me.namila.food_ordering.domain.core.exception.OrderDomainException;
 import me.namila.food_ordering.domain.core.valueobject.TrackingId;
 
 /**
@@ -48,7 +48,7 @@ public class OrderTrackCommandHandler {
     if (orderOptional.isEmpty()) {
       log.error("OrderTrackCommandHandler::trackOrder - order: {} is missing on db",
           trackOrderQuery.getOrderTracking());
-      throw new OrderDomainException(
+      throw new OrderNotFoundException(
           "order: " + trackOrderQuery.getOrderTracking() + " is missing on db");
     }
     return orderDataMapper.orderToTrackOrderResponse(orderOptional.get());

@@ -14,6 +14,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>commons-domain</module>
+        <module>commons-application</module>
     </modules>
 
     <properties>
@@ -21,6 +22,7 @@
 
         <!--        versioning-->
         <common-domain.version>1.0.0-dev-SNAPSHOT</common-domain.version>
+        <common-application.version>1.0.0-dev-SNAPSHOT</common-application.version>
     </properties>
 
     <dependencyManagement>
@@ -29,6 +31,11 @@
                 <groupId>me.namila.food_ordering</groupId>
                 <artifactId>common-domain</artifactId>
                 <version>${common-domain.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>me.namila.food_ordering</groupId>
+                <artifactId>commons-application</artifactId>
+                <version>${common-application.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

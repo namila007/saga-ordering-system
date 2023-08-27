@@ -36,7 +36,7 @@
         <order-application.version>1.0.0-dev-SNAPSHOT</order-application.version>
         <order-dataaccess.version>1.0.0-dev-SNAPSHOT</order-dataaccess.version>
         <!--        commons-->
-        <order-commons-domain.version>1.0.0-dev-SNAPSHOT</order-commons-domain.version>
+        <order-commons.version>1.0.0-dev-SNAPSHOT</order-commons.version>
         <!--        kafka-->
         <kafka.version>1.0.0-dev-SNAPSHOT</kafka.version>
         <!--   End  order service dependency versions-->
@@ -76,8 +76,10 @@
             </dependency>
             <dependency>
                 <groupId>me.namila.food_ordering</groupId>
-                <artifactId>commons-domain</artifactId>
-                <version>${order-commons-domain.version}</version>
+                <artifactId>commons</artifactId>
+                <version>${order-commons.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
             <dependency>
                 <groupId>me.namila.food_ordering</groupId>

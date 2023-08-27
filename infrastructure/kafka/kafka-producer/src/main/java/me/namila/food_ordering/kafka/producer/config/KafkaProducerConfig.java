@@ -1,8 +1,9 @@
 package me.namila.food_ordering.kafka.producer.config;
 
-import lombok.extern.slf4j.Slf4j;
-import me.namila.food_ordering.kafka.config.KafkaConfigData;
-import me.namila.food_ordering.kafka.config.KafkaProducerConfigData;
+import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
+
 import org.apache.avro.specific.SpecificRecordBase;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.springframework.context.annotation.Bean;
@@ -11,9 +12,9 @@ import org.springframework.kafka.core.DefaultKafkaProducerFactory;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.core.ProducerFactory;
 
-import java.io.Serializable;
-import java.util.HashMap;
-import java.util.Map;
+import lombok.extern.slf4j.Slf4j;
+import me.namila.food_ordering.kafka.config.KafkaConfigData;
+import me.namila.food_ordering.kafka.config.KafkaProducerConfigData;
 
 /**
  * The type Kafka producer config.
