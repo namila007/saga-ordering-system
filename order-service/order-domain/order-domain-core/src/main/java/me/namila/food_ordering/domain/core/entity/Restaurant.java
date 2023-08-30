@@ -2,6 +2,7 @@ package me.namila.food_ordering.domain.core.entity;
 
 import java.util.List;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import me.namila.food_ordering.common.entity.AggregateRoot;
 import me.namila.food_ordering.common.valueobject.RestaurantId;
@@ -10,6 +11,7 @@ import me.namila.food_ordering.common.valueobject.RestaurantId;
  * The type Restaurant.
  */
 @Getter
+@AllArgsConstructor
 public class Restaurant extends AggregateRoot<RestaurantId> {
   private final List<Product> products;
   private final boolean isActive;

@@ -1,5 +1,6 @@
 package me.namila.food_ordering.domain.core.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import me.namila.food_ordering.common.entity.BaseEntity;
 import me.namila.food_ordering.common.valueobject.Money;
@@ -10,6 +11,7 @@ import me.namila.food_ordering.domain.core.valueobject.OrderItemId;
  * The type Order item.
  */
 @Getter
+@AllArgsConstructor
 public class OrderItem extends BaseEntity<OrderItemId> {
   private final Product product;
   private final Integer quantity;

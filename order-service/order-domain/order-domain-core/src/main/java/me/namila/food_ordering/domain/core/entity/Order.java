@@ -3,6 +3,7 @@ package me.namila.food_ordering.domain.core.entity;
 import java.util.List;
 import java.util.UUID;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import me.namila.food_ordering.common.entity.AggregateRoot;
 import me.namila.food_ordering.common.valueobject.CustomerId;
@@ -19,7 +20,10 @@ import me.namila.food_ordering.domain.core.valueobject.TrackingId;
  * The type Order.
  */
 @Getter
+@AllArgsConstructor
 public class Order extends AggregateRoot<OrderId> {
+  public static final String FAILURE_MESSAGE_DELIMITER = ",";
+
   private final CustomerId customerId;
   private final RestaurantId restaurantId;
   private final StreetAddress deliveryAddress;
