@@ -6,7 +6,12 @@ import jakarta.persistence.Column;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import me.namila.food_ordering.dataaccess.restaurant.entity.key.RestaurantEntityId;
 
 /**
@@ -30,10 +35,8 @@ public class RestaurantEntity {
   @Column(name = "restaurant_active")
   private Boolean restaurantActive;
   @Column(name = "product_name")
-
   private String productName;
   @Column(name = "product_price")
-
   private BigDecimal productPrice;
 
 }

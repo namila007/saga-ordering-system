@@ -3,6 +3,7 @@ package me.namila.food_ordering.dataaccess.restaurant.mapper;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 import org.mapstruct.Mapper;
@@ -79,6 +80,17 @@ public abstract class RestaurantDataAccessMapper {
             .collect(Collectors.toList());
   }
 
-  // @InheritInverseConfiguration
-  // public abstract List<RestaurantEntity> toRestaurantEntities(Restaurant restaurant);
+
+  public List<RestaurantEntity> toRestaurantEntities(Restaurant restaurant) {
+    Boolean isActive = restaurant.isActive();
+    UUID id = restaurant.getId().getBaseId();
+    return restaurant.getProducts().stream()
+        .map(prod -> RestaurantEntity.builder()
+            .restaurantEntityId(RestaurantEntityId.builder().restaurantId(id)
+                .productId(prod.getId().getBaseId()).build())
+            .restaurantActive(isActive).productName(prod.getName())
+            .productPrice(prod.getMoney().getAmount()).build())
+        .collect(Collectors.toList());
+
+  }
 }
