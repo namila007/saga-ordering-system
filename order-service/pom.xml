@@ -38,7 +38,7 @@
         <!--        commons-->
         <order-commons.version>1.0.0-dev-SNAPSHOT</order-commons.version>
         <!--        kafka-->
-        <kafka.version>1.0.0-dev-SNAPSHOT</kafka.version>
+        <kafka-module.version>1.0.0-dev-SNAPSHOT</kafka-module.version>
         <!--   End  order service dependency versions-->
     </properties>
 
@@ -84,7 +84,7 @@
             <dependency>
                 <groupId>me.namila.food_ordering</groupId>
                 <artifactId>kafka</artifactId>
-                <version>${kafka.version}</version>
+                <version>${kafka-module.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
                 <exclusions>

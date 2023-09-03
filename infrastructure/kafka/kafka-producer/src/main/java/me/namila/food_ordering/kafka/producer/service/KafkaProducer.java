@@ -1,12 +1,10 @@
 package me.namila.food_ordering.kafka.producer.service;
 
+import java.io.Serializable;
+import java.util.function.BiConsumer;
+
 import org.apache.avro.specific.SpecificRecordBase;
 import org.springframework.kafka.support.SendResult;
-import org.springframework.util.concurrent.ListenableFutureCallback;
-
-import java.io.Serializable;
-import java.util.concurrent.CompletableFuture;
-import java.util.function.BiConsumer;
 
 /**
  * The interface Kafka producer.
@@ -20,10 +18,9 @@ public interface KafkaProducer<K extends Serializable, V extends SpecificRecordB
      * Send.
      *
      * @param topicName the topic name
-     * @param key       the key
-     * @param value     the value
-     * @param callback  the callback
+     * @param key the key
+     * @param value the value
+     * @param action the action
      */
-    //ToDO ListenableFutureCallback -> CompletableFuture
     void send(String topicName, K key, V value, BiConsumer<? super SendResult<K,V>, ? super Throwable> action);
 }

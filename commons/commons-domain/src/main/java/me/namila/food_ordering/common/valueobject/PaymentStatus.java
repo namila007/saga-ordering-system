@@ -7,7 +7,7 @@ public enum PaymentStatus {
   /**
    * Complete payment status.
    */
-  COMPLETE,
+  COMPLETED,
   /**
    * Cancelled payment status.
    */
@@ -25,7 +25,7 @@ public enum PaymentStatus {
    */
   public PaymentStatus getPaymentStatus(String status) {
     return switch (status.trim().toLowerCase()) {
-      case "complete" -> COMPLETE;
+      case "complete" -> COMPLETED;
       case "cancelled" -> CANCELLED;
       case "failed" -> FAILED;
       default -> throw new IllegalStateException("No mapped payment status");
