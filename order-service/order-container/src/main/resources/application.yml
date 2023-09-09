@@ -1,0 +1,35 @@
+server:
+  port: 8181
+
+logging:
+  level:
+    me.namila.food_ordering: debug
+
+
+spring:
+  jpa:
+    open-in-view: false
+    database-platform: org.hibernate.dialect.PostgreSQL9Dialect
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQL9Dialect
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres?currentSchema=order&binaryTransfer=true&reWriteBatchedInserts=true&stringtype=unspecified
+    username: postgres
+    password: admin
+    driver-class-name: org.postgresql.Driver
+  sql:
+    init:
+      mode: ALWAYS
+      schema-locations: classpath:init-schema.sql
+      platform: postgres
+
+order-service:
+  payment-request-topic-name: payment-request
+  payment-response-topic-name: payment-response
+  restaurant-approval-request-topic-name: restaurant-approval-request
+  restaurant-approval-response-topic-name: restaurant-approval-response
+
+
+
+
