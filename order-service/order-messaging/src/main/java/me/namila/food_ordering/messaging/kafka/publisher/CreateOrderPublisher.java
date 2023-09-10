@@ -1,6 +1,5 @@
 package me.namila.food_ordering.messaging.kafka.publisher;
 
-import me.namila.food_ordering.messaging.kafka.handler.PublisherMessageHelper;
 import org.springframework.stereotype.Component;
 
 import lombok.extern.slf4j.Slf4j;
@@ -10,6 +9,7 @@ import me.namila.food_ordering.domain.application.constant.OrderServiceConstant;
 import me.namila.food_ordering.domain.application.ports.output.message.publisher.payment.OrderCreatedPaymentRequestMessagePublisher;
 import me.namila.food_ordering.domain.core.event.OrderCreatedEvent;
 import me.namila.food_ordering.kafka.producer.service.KafkaProducer;
+import me.namila.food_ordering.messaging.kafka.handler.PublisherMessageHelper;
 import me.namila.food_ordering.messaging.mapper.OrderMessagingDataMapper;
 
 /**
@@ -19,10 +19,10 @@ import me.namila.food_ordering.messaging.mapper.OrderMessagingDataMapper;
 @Component
 public class CreateOrderPublisher implements OrderCreatedPaymentRequestMessagePublisher {
 
-  private KafkaProducer<String, PaymentRequestAvroModel> KafkaProducer;
-  private OrderMessagingDataMapper orderMessagingDataMapper;
-  private OrderServiceConfigData orderServiceConfigData;
-  private PublisherMessageHelper<String, PaymentRequestAvroModel> publisherMessageHelper;
+  private final KafkaProducer<String, PaymentRequestAvroModel> KafkaProducer;
+  private final OrderMessagingDataMapper orderMessagingDataMapper;
+  private final OrderServiceConfigData orderServiceConfigData;
+  private final PublisherMessageHelper<String, PaymentRequestAvroModel> publisherMessageHelper;
 
   public CreateOrderPublisher(
       me.namila.food_ordering.kafka.producer.service.KafkaProducer<String, PaymentRequestAvroModel> kafkaProducer,
@@ -33,21 +33,6 @@ public class CreateOrderPublisher implements OrderCreatedPaymentRequestMessagePu
     this.orderMessagingDataMapper = orderMessagingDataMapper;
     this.orderServiceConfigData = orderServiceConfigData;
     this.publisherMessageHelper = publisherMessageHelper;
-  }
-
-  /**
-   * Instantiates a new Create order publisher.
-   *
-   * @param KafkaProducer the kafka producer
-   * @param orderMessagingDataMapper the order messaging data mapper
-   * @param orderServiceConfigData the order service config data
-   */
-  public CreateOrderPublisher(KafkaProducer<String, PaymentRequestAvroModel> KafkaProducer,
-      OrderMessagingDataMapper orderMessagingDataMapper,
-      OrderServiceConfigData orderServiceConfigData) {
-    this.KafkaProducer = KafkaProducer;
-    this.orderMessagingDataMapper = orderMessagingDataMapper;
-    this.orderServiceConfigData = orderServiceConfigData;
   }
 
   @Override

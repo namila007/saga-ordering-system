@@ -16,6 +16,9 @@
 
     <name>food-ordering-system</name>
     <url>https://namila.me</url>
+    <modules>
+
+    </modules>
 
 
     <properties>
@@ -33,6 +36,7 @@
         <!--order service-->
         <order-service.version>1.0.0-dev-SNAPSHOT</order-service.version>
         <ordering-commons.version>1.0.0-dev-SNAPSHOT</ordering-commons.version>
+        <customer-service.version>1.0.0-dev-SNAPSHOT</customer-service.version>
         <!-- infrastructure-->
         <infrastructure.version>1.0.0-dev-SNAPSHOT</infrastructure.version>
     </properties>
@@ -63,6 +67,12 @@
             </modules>
         </profile>
         <profile>
+            <id>customer-service</id>
+            <modules>
+                <module>customer-service</module>
+            </modules>
+        </profile>
+        <profile>
             <id>infrastructure</id>
             <modules>
                 <module>infrastructure</module>
@@ -83,6 +93,7 @@
                 <module>order-service</module>
                 <module>commons</module>
                 <module>infrastructure</module>
+                <module>customer-service</module>
             </modules>
         </profile>
     </profiles>

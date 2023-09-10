@@ -3,17 +3,17 @@ package me.namila.food_ordering.container;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 /**
  * The type Order service application.
  */
-@EnableConfigurationProperties
 @EnableJpaAuditing
-@EntityScan(basePackages = "me.namila.food_ordering.dataaccess")
-@EnableJpaRepositories(basePackages = "me.namila.food_ordering.dataaccess")
+@EntityScan(basePackages = "me.namila.food_ordering")
+@EnableJpaRepositories(basePackages = "me.namila.food_ordering")
+@ConfigurationPropertiesScan(basePackages = "me.namila.food_ordering")
 @SpringBootApplication(scanBasePackages = "me.namila.food_ordering")
 public class OrderServiceApplication {
 

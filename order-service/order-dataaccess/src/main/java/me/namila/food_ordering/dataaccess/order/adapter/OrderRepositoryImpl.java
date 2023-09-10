@@ -2,12 +2,15 @@ package me.namila.food_ordering.dataaccess.order.adapter;
 
 import java.util.Optional;
 
+import org.springframework.stereotype.Component;
+
 import me.namila.food_ordering.dataaccess.order.mapper.OrderDataAccessMapper;
 import me.namila.food_ordering.dataaccess.order.repository.OrderJpaRepository;
 import me.namila.food_ordering.domain.application.ports.output.repository.OrderRepository;
 import me.namila.food_ordering.domain.core.entity.Order;
 import me.namila.food_ordering.domain.core.valueobject.TrackingId;
 
+@Component
 public class OrderRepositoryImpl implements OrderRepository {
 
   private final OrderJpaRepository orderJpaRepository;

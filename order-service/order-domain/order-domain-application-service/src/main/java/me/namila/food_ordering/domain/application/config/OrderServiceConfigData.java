@@ -3,19 +3,15 @@ package me.namila.food_ordering.domain.application.config;
 import java.util.Properties;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.boot.context.properties.bind.ConstructorBinding;
-import org.springframework.core.env.Environment;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
 @ConfigurationProperties(prefix = "order-service")
 public class OrderServiceConfigData extends Properties {
-  private final org.springframework.core.env.Environment delegate;
-
-
-  @ConstructorBinding
-  public OrderServiceConfigData(Properties defaults, Environment delegate) {
-    super(defaults);
-    this.delegate = delegate;
-  }
+  private org.springframework.core.env.Environment delegate;
 
   @Override
   public String getProperty(String key) {

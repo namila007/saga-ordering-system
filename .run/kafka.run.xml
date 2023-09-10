@@ -1,0 +1,19 @@
+<component name="ProjectRunConfigurationManager">
+    <configuration default="false" name="kafka" type="docker-deploy" factoryName="docker-compose.yml"
+                   server-name="Docker">
+        <deployment type="docker-compose.yml">
+            <settings>
+                <option name="composeProjectName" value="kafka-cluster"/>
+                <option name="envFilePath"
+                        value="E:\Projects\spring\saga-ordering-system\infrastructure\docker-compose\.env.local"/>
+                <option name="secondarySourceFiles">
+                    <list>
+                        <option value="infrastructure/docker-compose/kafka-compose.yml"/>
+                    </list>
+                </option>
+                <option name="sourceFilePath" value="infrastructure/docker-compose/common-compose.yml"/>
+            </settings>
+        </deployment>
+        <method v="2"/>
+    </configuration>
+</component>
