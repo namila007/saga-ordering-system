@@ -1,5 +1,6 @@
 package me.namila.food_ordering.messaging.mapper;
 
+import org.mapstruct.Builder;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingConstants;
@@ -21,7 +22,8 @@ import me.namila.food_ordering.domain.core.event.OrderPaidEvent;
  * The type Order messaging data mapper.
  */
 @Mapper(unmappedSourcePolicy = ReportingPolicy.IGNORE,
-    unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = "spring")
+    unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = "spring",
+    builder = @Builder(disableBuilder = true))
 public abstract class OrderMessagingDataMapper {
 
   /**
@@ -36,6 +38,8 @@ public abstract class OrderMessagingDataMapper {
   @Mapping(target = "customerId", source = "order.customerId.baseId")
   @Mapping(target = "price", source = "order.price.amount")
   @Mapping(target = "createdAt", expression = "java(orderCreatedEvent.getCreatedAt().toInstant())")
+  @Mapping(target = "paymentOrderStatus",
+      expression = "java(convertOrderStatus(orderCreatedEvent.getOrder().getOrderStatus()))")
   public abstract PaymentRequestAvroModel createdEventToPaymentRequestAvroModel(
       OrderCreatedEvent orderCreatedEvent);
 
@@ -82,6 +86,8 @@ public abstract class OrderMessagingDataMapper {
   @Mapping(target = "sagaId", expression = "java(UUID.randomUUID())")
   @Mapping(target = "price", source = "order.price.amount")
   @Mapping(target = "createdAt", expression = "java(orderPaidEvent.getCreatedAt().toInstant())")
+  @Mapping(target = "restaurantOrderStatus",
+      expression = "java(convertOrderStatusToRestaurantStatus(orderPaidEvent.getOrder().getOrderStatus()))")
   public abstract RestaurantApprovalRequestAvroModel toRestaurantApproval(
       OrderPaidEvent orderPaidEvent);
 

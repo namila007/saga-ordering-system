@@ -1,10 +1,13 @@
 package me.namila.food_ordering.dataaccess.customer.mapper;
 
+import java.util.UUID;
+
 import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.ReportingPolicy;
 
+import me.namila.food_ordering.common.valueobject.CustomerId;
 import me.namila.food_ordering.dataaccess.customer.entity.CustomerEntity;
 import me.namila.food_ordering.domain.core.entity.Customer;
 
@@ -31,5 +34,10 @@ public interface CustomerDataAccessMapper {
    * @return the customer
    */
   @InheritInverseConfiguration
+  @Mapping(target = "id", expression = "java(getCustomerId(customer.getId()))")
   Customer toCustomer(CustomerEntity customer);
+
+  default CustomerId getCustomerId(UUID id) {
+    return new CustomerId(id);
+  }
 }

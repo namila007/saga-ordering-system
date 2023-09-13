@@ -8,9 +8,12 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
+import org.mapstruct.AfterMapping;
+import org.mapstruct.Builder;
 import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.MappingTarget;
 import org.mapstruct.ReportingPolicy;
 
 import me.namila.food_ordering.common.valueobject.Money;
@@ -25,7 +28,8 @@ import me.namila.food_ordering.domain.core.valueobject.StreetAddress;
  * The type Order data access mapper.
  */
 @Mapper(unmappedSourcePolicy = ReportingPolicy.IGNORE,
-    unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = "spring")
+    unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = "spring",
+    builder = @Builder(disableBuilder = true))
 public abstract class OrderDataAccessMapper {
 
 
@@ -46,6 +50,18 @@ public abstract class OrderDataAccessMapper {
       expression = "java(toFailureMessagesString(order.getFailureMessages()))")
   public abstract OrderEntity fromOrderToOrderEntity(Order order);
 
+  /**
+   * Update order entity.
+   *
+   * @param orderEntity the order entity
+   */
+  @AfterMapping
+  protected void updateOrderEntity(@MappingTarget OrderEntity orderEntity) {
+    orderEntity.getAddress().setOrder(orderEntity);
+    orderEntity.getItems()
+        .forEach(orderItemEntity -> orderItemEntity.getOrderItem().setOrder(orderEntity));
+
+  }
 
   /**
    * To order address entity order address entity.
@@ -85,7 +101,6 @@ public abstract class OrderDataAccessMapper {
   @Mapping(target = "price", expression = "java(orderItem.getPrice().getAmount())")
   @Mapping(target = "orderItem.id", source = "id.baseId")
   protected abstract OrderItemEntity fromOrderItemEntityToOrderItem(OrderItem orderItem);
-
 
 
   /**

@@ -13,20 +13,20 @@ public class OrderServiceConstant {
     /**
      * The constant paymentRequestTopicName.
      */
-    public static final String paymentRequestTopicName = "paymentRequestTopicName";
+    public static final String paymentRequestTopicName = "payment-request-topic-name";
     /**
      * The constant paymentResponseTopicName.
      */
-    public static final String paymentResponseTopicName = "paymentResponseTopicName";
+    public static final String paymentResponseTopicName = "payment-response-topic-name";
     /**
      * The constant restaurantApprovalRequestTopicName.
      */
     public static final String restaurantApprovalRequestTopicName =
-        "restaurantApprovalRequestTopicName";
+        "restaurant-approval-request-topic-name";
     /**
      * The constant restaurantApprovalResponseTopicName.
      */
     public static final String restaurantApprovalResponseTopicName =
-        "restaurantApprovalResponseTopicName";
+        "restaurant-approval-response-topic-name";
   }
 }

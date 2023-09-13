@@ -38,7 +38,7 @@ import me.namila.food_ordering.common.valueobject.OrderStatus;
 @Builder
 @Entity
 @EntityListeners(AuditingEntityListener.class)
-@Table(name = "order")
+@Table(name = "orders")
 public class OrderEntity {
   @Id
   @EqualsAndHashCode.Include
@@ -61,7 +61,6 @@ public class OrderEntity {
 
   @OneToMany(mappedBy = "orderItem.order", cascade = CascadeType.ALL)
   private List<OrderItemEntity> items;
-
 
   @CreatedDate
   @Column(name = "created_at", nullable = false, updatable = false)
