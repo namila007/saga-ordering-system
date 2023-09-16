@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 /**
  * The type Customer service application.
  */
-@SpringBootApplication(scanBasePackages = "me.namila.food_ordering")
+@SpringBootApplication(scanBasePackages = {"me.namila.food_ordering.customer"})
 public class CustomerServiceApplication {
 
   /**

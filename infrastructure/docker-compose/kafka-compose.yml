@@ -101,7 +101,7 @@ services:
 
   kafka-manager:
     image: hlebalbau/kafka-manager:stable
-    restart: always
+#    restart: always
     depends_on:
       - zookeeper
     ports:
