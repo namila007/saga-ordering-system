@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>me.namila.food_ordering</groupId>
+        <artifactId>payment-service</artifactId>
+        <version>${payment-service.version}</version>
+    </parent>
+
+    <artifactId>payment-domain</artifactId>
+    <version>${payment-domain.version}</version>
+    <packaging>pom</packaging>
+    <modules>
+        <module>payment-domain-core</module>
+        <module>payment-application-service</module>
+    </modules>
+
+    <properties>
+        <domain-core.version>1.0.0-dev-SNAPSHOT</domain-core.version>
+        <domain-application.version>1.0.0-dev-SNAPSHOT</domain-application.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>me.namila.food_ordering</groupId>
+                <artifactId>payment-domain-core</artifactId>
+                <version>${domain-core.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>me.namila.food_ordering</groupId>
+                <artifactId>payment-application-service</artifactId>
+                <version>${domain-applicaiton.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+</project>

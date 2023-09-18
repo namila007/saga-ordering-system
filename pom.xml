@@ -18,6 +18,7 @@
     <url>https://namila.me</url>
     <modules>
 
+        <module>payment-service</module>
     </modules>
 
 
@@ -39,6 +40,8 @@
         <customer-service.version>1.0.0-dev-SNAPSHOT</customer-service.version>
         <!-- infrastructure-->
         <infrastructure.version>1.0.0-dev-SNAPSHOT</infrastructure.version>
+        <!--        payment-->
+        <payment-service.version>1.0.0-dev-SNAPSHOT</payment-service.version>
     </properties>
 
     <dependencyManagement>
@@ -64,6 +67,12 @@
             <id>order-service</id>
             <modules>
                 <module>order-service</module>
+            </modules>
+        </profile>
+        <profile>
+            <id>payment-service</id>
+            <modules>
+                <module>payment-service</module>
             </modules>
         </profile>
         <profile>
@@ -94,6 +103,7 @@
                 <module>commons</module>
                 <module>infrastructure</module>
                 <module>customer-service</module>
+                <module>payment-service</module>
             </modules>
         </profile>
     </profiles>

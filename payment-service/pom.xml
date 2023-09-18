@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>me.namila.food_ordering</groupId>
+        <artifactId>food-ordering-system</artifactId>
+        <version>${revision}</version>
+    </parent>
+
+    <artifactId>payment-service</artifactId>
+    <packaging>pom</packaging>
+    <version>${payment-service.version}</version>
+    <modules>
+        <module>payment-domain</module>
+        <module>payment-messaging</module>
+        <module>payment-container</module>
+        <module>payment-dataaccess</module>
+    </modules>
+
+    <properties>
+        <payment-domain.version>1.0.0-dev-SNAPSHOT</payment-domain.version>
+        <payment-messaging.version>1.0.0-dev-SNAPSHOT</payment-messaging.version>
+        <payment-dataaccess.version>1.0.0-dev-SNAPSHOT</payment-dataaccess.version>
+        <payment-container.version>1.0.0-dev-SNAPSHOT</payment-container.version>
+
+        <!--        commons-->
+        <payment-commons.version>1.0.0-dev-SNAPSHOT</payment-commons.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>me.namila.food_ordering</groupId>
+                <artifactId>payment-container</artifactId>
+                <version>${payment-container.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>me.namila.food_ordering</groupId>
+                <artifactId>payment-domain</artifactId>
+                <version>${payment-domain.version}</version>
+                <type>BOM</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>me.namila.food_ordering</groupId>
+                <artifactId>payment-messaging</artifactId>
+                <version>${payment-messaging.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>me.namila.food_ordering</groupId>
+                <artifactId>payment-dataaccess</artifactId>
+                <version>${payment-dataaccess.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>me.namila.food_ordering</groupId>
+                <artifactId>commons-domain</artifactId>
+                <version>${payment-commons.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-logging</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+    </dependencies>
+</project>
