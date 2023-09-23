@@ -6,7 +6,9 @@ import java.util.UUID;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import me.namila.food_ordering.common.event.publisher.DomainEventPublisher;
 import me.namila.food_ordering.order.domain.application.dto.create.CreateOrderCommand;
 import me.namila.food_ordering.order.domain.application.mapper.OrderDataMapper;
 import me.namila.food_ordering.order.domain.application.ports.output.repository.CustomerRepository;
@@ -24,6 +26,7 @@ import me.namila.food_ordering.order.domain.core.service.OrderDomainService;
  */
 @Slf4j
 @Component
+@RequiredArgsConstructor
 public class OrderCreateHelper {
   private final OrderDomainService orderDomainService;
   private final OrderRepository orderRepository;
@@ -31,25 +34,8 @@ public class OrderCreateHelper {
   private final RestaurantRepository restaurantRepository;
 
   private final OrderDataMapper orderDataMapper;
+  private final DomainEventPublisher<OrderCreatedEvent> orderCreatedEventDomainEventPublisher;
 
-  /**
-   * Instantiates a new Order create helper.
-   *
-   * @param orderDomainService the order domain service
-   * @param orderRepository the order repository
-   * @param customerRepository the customer repository
-   * @param restaurantRepository the restaurant repository
-   * @param orderDataMapper the order data mapper
-   */
-  public OrderCreateHelper(OrderDomainService orderDomainService, OrderRepository orderRepository,
-      CustomerRepository customerRepository, RestaurantRepository restaurantRepository,
-      OrderDataMapper orderDataMapper) {
-    this.orderDomainService = orderDomainService;
-    this.orderRepository = orderRepository;
-    this.customerRepository = customerRepository;
-    this.restaurantRepository = restaurantRepository;
-    this.orderDataMapper = orderDataMapper;
-  }
 
   /**
    * Persist order order.
@@ -62,8 +48,8 @@ public class OrderCreateHelper {
     checkCustomer(createOrderCommand.getCustomerId());
     Restaurant restaurant = retrieveRestaurant(createOrderCommand);
     Order order = orderDataMapper.createOrderCommandToOrder(createOrderCommand);
-    OrderCreatedEvent validatedOrder =
-        orderDomainService.validateAndInitiateOrder(order, restaurant);
+    OrderCreatedEvent validatedOrder = orderDomainService.validateAndInitiateOrder(order,
+            restaurant, orderCreatedEventDomainEventPublisher);
     saveOrder(order);
     return validatedOrder;
   }

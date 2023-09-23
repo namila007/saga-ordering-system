@@ -5,6 +5,7 @@ import java.time.ZonedDateTime;
 import java.util.List;
 
 import lombok.extern.slf4j.Slf4j;
+import me.namila.food_ordering.common.event.publisher.DomainEventPublisher;
 import me.namila.food_ordering.order.domain.core.entity.Order;
 import me.namila.food_ordering.order.domain.core.entity.Restaurant;
 import me.namila.food_ordering.order.domain.core.event.OrderCancelledEvent;
@@ -20,7 +21,8 @@ public class OrderDomainServiceImpl implements OrderDomainService {
   private static final String TIME_ZONE = "UTC";
 
   @Override
-  public OrderCreatedEvent validateAndInitiateOrder(Order order, Restaurant restaurant) {
+  public OrderCreatedEvent validateAndInitiateOrder(Order order, Restaurant restaurant,
+                                                    DomainEventPublisher<OrderCreatedEvent> orderCreatedEventDomainEventPublisher) {
     validateRestaurant(restaurant);
     setOrderProductInformation(order, restaurant);
     order.validateOrder();
@@ -28,7 +30,8 @@ public class OrderDomainServiceImpl implements OrderDomainService {
     log.info(
         "OrderDomainServiceImpl::validateAndInitiateOrder - order with order id: {} is initiated",
         order.getId());
-    return new OrderCreatedEvent(order, ZonedDateTime.now(ZoneId.of(TIME_ZONE)));
+    return new OrderCreatedEvent(order, ZonedDateTime.now(ZoneId.of(TIME_ZONE)),
+            orderCreatedEventDomainEventPublisher);
   }
 
   private void setOrderProductInformation(Order order, Restaurant restaurant) {
@@ -47,10 +50,12 @@ public class OrderDomainServiceImpl implements OrderDomainService {
   }
 
   @Override
-  public OrderPaidEvent payOrder(Order order) {
+  public OrderPaidEvent payOrder(Order order,
+                                 DomainEventPublisher<OrderPaidEvent> orderPaidEventDomainEventPublisher) {
     order.pay();
     log.info("OrderDomainServiceImpl::payOrder - order with order id: {} is paid", order.getId());
-    return new OrderPaidEvent(order, ZonedDateTime.now(ZoneId.of(TIME_ZONE)));
+    return new OrderPaidEvent(order, ZonedDateTime.now(ZoneId.of(TIME_ZONE)),
+            orderPaidEventDomainEventPublisher);
   }
 
   @Override
@@ -61,11 +66,14 @@ public class OrderDomainServiceImpl implements OrderDomainService {
   }
 
   @Override
-  public OrderCancelledEvent cancelOrderPayment(Order order, List<String> failureMessages) {
+  public OrderCancelledEvent cancelOrderPayment(Order order, List<String> failureMessages,
+                                                DomainEventPublisher<OrderCancelledEvent> orderCancelledEventDomainEventPublisher) {
     order.initCancel(failureMessages);
     log.info("OrderDomainServiceImpl::approveOrder - order with order id: {} is cancelling",
         order.getId().getBaseId());
-    return new OrderCancelledEvent(order, ZonedDateTime.now(ZoneId.of(TIME_ZONE)));
+
+    return new OrderCancelledEvent(order, ZonedDateTime.now(ZoneId.of(TIME_ZONE)),
+            orderCancelledEventDomainEventPublisher);
   }
 
   @Override

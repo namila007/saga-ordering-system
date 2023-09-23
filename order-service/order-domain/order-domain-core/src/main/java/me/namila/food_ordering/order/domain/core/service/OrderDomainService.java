@@ -2,6 +2,7 @@ package me.namila.food_ordering.order.domain.core.service;
 
 import java.util.List;
 
+import me.namila.food_ordering.common.event.publisher.DomainEventPublisher;
 import me.namila.food_ordering.order.domain.core.entity.Order;
 import me.namila.food_ordering.order.domain.core.entity.Restaurant;
 import me.namila.food_ordering.order.domain.core.event.OrderCancelledEvent;
@@ -18,17 +19,21 @@ public interface OrderDomainService {
    *
    * @param order the order
    * @param restaurant the restaurant
+   * @param orderCreatedEventDomainEventPublisher the order created event domain event publisher
    * @return the order created event
    */
-  OrderCreatedEvent validateAndInitiateOrder(Order order, Restaurant restaurant);
+  OrderCreatedEvent validateAndInitiateOrder(Order order, Restaurant restaurant,
+                                             DomainEventPublisher<OrderCreatedEvent> orderCreatedEventDomainEventPublisher);
 
   /**
    * Pay order order paid event.
    *
    * @param order the order
+   * @param orderPaidEventDomainEventPublisher the order paid event domain event publisher
    * @return the order paid event
    */
-  OrderPaidEvent payOrder(Order order);
+  OrderPaidEvent payOrder(Order order,
+                          DomainEventPublisher<OrderPaidEvent> orderPaidEventDomainEventPublisher);
 
   /**
    * Approve order.
@@ -42,9 +47,11 @@ public interface OrderDomainService {
    *
    * @param order the order
    * @param failureMessages the failure messages
+   * @param orderCancelledEventDomainEventPublisher the order cancelled event domain event publisher
    * @return the order cancelled event
    */
-  OrderCancelledEvent cancelOrderPayment(Order order, List<String> failureMessages);
+  OrderCancelledEvent cancelOrderPayment(Order order, List<String> failureMessages,
+                                         DomainEventPublisher<OrderCancelledEvent> orderCancelledEventDomainEventPublisher);
 
   /**
    * Cancel order.
