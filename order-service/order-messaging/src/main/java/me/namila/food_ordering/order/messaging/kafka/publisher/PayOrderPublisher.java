@@ -4,12 +4,12 @@ import org.springframework.stereotype.Component;
 
 import lombok.extern.slf4j.Slf4j;
 import me.food_ordering.system.kafka.order.avro.model.RestaurantApprovalRequestAvroModel;
+import me.namila.food_ordering.kafka.producer.handler.PublisherMessageHelper;
 import me.namila.food_ordering.kafka.producer.service.KafkaProducer;
 import me.namila.food_ordering.order.domain.application.config.OrderServiceConfigData;
 import me.namila.food_ordering.order.domain.application.constant.OrderServiceConstant;
 import me.namila.food_ordering.order.domain.application.ports.output.message.publisher.payment.OrderPaidPaymentRequestMessagePublisher;
 import me.namila.food_ordering.order.domain.core.event.OrderPaidEvent;
-import me.namila.food_ordering.order.messaging.kafka.handler.PublisherMessageHelper;
 import me.namila.food_ordering.order.messaging.mapper.OrderMessagingDataMapper;
 
 /**
@@ -46,7 +46,8 @@ public class PayOrderPublisher implements OrderPaidPaymentRequestMessagePublishe
           orderServiceConfigData
               .getProperty(OrderServiceConstant.KafkaTopic.restaurantApprovalRequestTopicName),
           requestAvroModel.getOrderId().toString(), requestAvroModel,
-          publisherMessageHelper.handleResponse.apply(requestAvroModel.getOrderId().toString()));
+              publisherMessageHelper.handleResponse.apply(requestAvroModel.getOrderId().toString(),
+                      requestAvroModel));
 
       log.info("PayOrderPublisher::publish - published pay order orderId: {}",
           requestAvroModel.getOrderId());

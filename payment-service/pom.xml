@@ -24,9 +24,13 @@
         <payment-messaging.version>1.0.0-dev-SNAPSHOT</payment-messaging.version>
         <payment-dataaccess.version>1.0.0-dev-SNAPSHOT</payment-dataaccess.version>
         <payment-container.version>1.0.0-dev-SNAPSHOT</payment-container.version>
+        <payment-domain-core.version>1.0.0-dev-SNAPSHOT</payment-domain-core.version>
+        <payment-domain-applicaiton.version>1.0.0-dev-SNAPSHOT</payment-domain-applicaiton.version>
 
         <!--        commons-->
         <payment-commons.version>1.0.0-dev-SNAPSHOT</payment-commons.version>
+        <!--        kafka-->
+        <kafka-module.version>1.0.0-dev-SNAPSHOT</kafka-module.version>
     </properties>
 
     <dependencyManagement>
@@ -38,10 +42,13 @@
             </dependency>
             <dependency>
                 <groupId>me.namila.food_ordering</groupId>
-                <artifactId>payment-domain</artifactId>
-                <version>${payment-domain.version}</version>
-                <type>BOM</type>
-                <scope>import</scope>
+                <artifactId>payment-domain-core</artifactId>
+                <version>${payment-domain-core.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>me.namila.food_ordering</groupId>
+                <artifactId>payment-application-service</artifactId>
+                <version>${payment-domain-applicaiton.version}</version>
             </dependency>
             <dependency>
                 <groupId>me.namila.food_ordering</groupId>
@@ -57,6 +64,23 @@
                 <groupId>me.namila.food_ordering</groupId>
                 <artifactId>commons-domain</artifactId>
                 <version>${payment-commons.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>me.namila.food_ordering</groupId>
+                <artifactId>kafka</artifactId>
+                <version>${kafka-module.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+                <exclusions>
+                    <exclusion>
+                        <groupId>me.namila.food_ordering</groupId>
+                        <artifactId>order-domain-core</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>me.namila.food_ordering</groupId>
+                        <artifactId>commons-domain</artifactId>
+                    </exclusion>
+                </exclusions>
             </dependency>
         </dependencies>
     </dependencyManagement>

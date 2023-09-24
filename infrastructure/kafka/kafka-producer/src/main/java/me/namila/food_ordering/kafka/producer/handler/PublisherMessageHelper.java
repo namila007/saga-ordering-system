@@ -1,7 +1,7 @@
-package me.namila.food_ordering.order.messaging.kafka.handler;
+package me.namila.food_ordering.kafka.producer.handler;
 
 import java.util.function.BiConsumer;
-import java.util.function.Function;
+import java.util.function.BiFunction;
 
 import org.apache.kafka.clients.producer.RecordMetadata;
 import org.springframework.kafka.support.SendResult;
@@ -19,15 +19,15 @@ import lombok.extern.slf4j.Slf4j;
 @Component
 public class PublisherMessageHelper<K, V> {
 
-  /**
-   * The Handle response of kafka publisher.
-   */
-  public Function<String, BiConsumer<? super SendResult<K, V>, ? super Throwable>> handleResponse =
-      (id) -> (success, error) -> {
+    /**
+     * The Handle response.
+     */
+    public BiFunction<K, V, BiConsumer<? super SendResult<K, V>, ? super Throwable>> handleResponse =
+            (id, object) -> (success, error) -> {
         if (error != null) {
           log.error(
-              "PublisherMessageHelper::handleResponse -  error occurred while publishing Id: {} , msg: {}",
-              id, error.getMessage(), error);
+                  "PublisherMessageHelper::handleResponse -  error occurred while publishing Id: {}, object: {} , msg: {}",
+                  id, object.toString(), error.getMessage(), error);
         } else {
           RecordMetadata recordMetadata = success.getRecordMetadata();
           log.info(

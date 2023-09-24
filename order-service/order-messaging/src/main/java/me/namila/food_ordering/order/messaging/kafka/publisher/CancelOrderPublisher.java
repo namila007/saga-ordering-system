@@ -4,12 +4,12 @@ import org.springframework.stereotype.Component;
 
 import lombok.extern.slf4j.Slf4j;
 import me.food_ordering.system.kafka.order.avro.model.PaymentRequestAvroModel;
+import me.namila.food_ordering.kafka.producer.handler.PublisherMessageHelper;
 import me.namila.food_ordering.kafka.producer.service.KafkaProducer;
 import me.namila.food_ordering.order.domain.application.config.OrderServiceConfigData;
 import me.namila.food_ordering.order.domain.application.constant.OrderServiceConstant;
 import me.namila.food_ordering.order.domain.application.ports.output.message.publisher.payment.OrderCancelledPaymentRequestMessagePublisher;
 import me.namila.food_ordering.order.domain.core.event.OrderCancelledEvent;
-import me.namila.food_ordering.order.messaging.kafka.handler.PublisherMessageHelper;
 import me.namila.food_ordering.order.messaging.mapper.OrderMessagingDataMapper;
 
 /**
@@ -54,7 +54,7 @@ public class CancelOrderPublisher implements OrderCancelledPaymentRequestMessage
               .getProperty(OrderServiceConstant.KafkaTopic.paymentRequestTopicName),
           paymentRequestAvroModel.getOrderId().toString(), paymentRequestAvroModel,
           publisherMessageHelper.handleResponse
-              .apply(paymentRequestAvroModel.getOrderId().toString()));
+                  .apply(paymentRequestAvroModel.getOrderId().toString(), paymentRequestAvroModel));
 
       log.info("CreateOrderPublisher::publish - canceled orderId: {}",
           paymentRequestAvroModel.getOrderId());

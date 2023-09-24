@@ -10,7 +10,7 @@
     </parent>
 
     <artifactId>payment-application-service</artifactId>
-    <version>${domain-applicaiton.version}</version>
+    <version>${domain-application.version}</version>
     <properties>
 
     </properties>

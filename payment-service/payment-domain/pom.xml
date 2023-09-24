@@ -23,17 +23,17 @@
     </properties>
 
     <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>me.namila.food_ordering</groupId>
-                <artifactId>payment-domain-core</artifactId>
-                <version>${domain-core.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>me.namila.food_ordering</groupId>
-                <artifactId>payment-application-service</artifactId>
-                <version>${domain-applicaiton.version}</version>
-            </dependency>
-        </dependencies>
+        <!--        <dependencies>-->
+        <!--            <dependency>-->
+        <!--                <groupId>me.namila.food_ordering</groupId>-->
+        <!--                <artifactId>payment-domain-core</artifactId>-->
+        <!--                <version>${domain-core.version}</version>-->
+        <!--            </dependency>-->
+        <!--            <dependency>-->
+        <!--                <groupId>me.namila.food_ordering</groupId>-->
+        <!--                <artifactId>payment-application-service</artifactId>-->
+        <!--                <version>${domain-applicaiton.version}</version>-->
+        <!--            </dependency>-->
+        <!--        </dependencies>-->
     </dependencyManagement>
 </project>
