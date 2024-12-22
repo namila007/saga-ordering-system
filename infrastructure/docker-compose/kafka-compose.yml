@@ -110,3 +110,25 @@ services:
       ZK_HOSTS: "zookeeper:32181"
     networks:
       - ${GLOBAL_NETWORK:-kafka}
+
+  control-center:
+    image: confluentinc/cp-enterprise-control-center:${KAFKA_VERSION}
+    hostname: control-center
+    container_name: control-center
+    depends_on:
+      - kafka-broker-1
+      - kafka-broker-2
+      - kafka-broker-3
+      - schema-registry
+    ports:
+      - "9021:9021"
+    environment:
+      CONTROL_CENTER_BOOTSTRAP_SERVERS: 'kafka-broker-2:9091'
+      CONTROL_CENTER_SCHEMA_REGISTRY_URL: http://schema-registry:35081
+      CONTROL_CENTER_REPLICATION_FACTOR: 3
+      CONTROL_CENTER_INTERNAL_TOPICS_PARTITIONS: 3
+      CONTROL_CENTER_MONITORING_INTERCEPTOR_TOPIC_PARTITIONS: 3
+      CONFLUENT_METRICS_TOPIC_REPLICATION: 3
+      PORT: 9021
+    networks:
+      - ${GLOBAL_NETWORK:-kafka}
